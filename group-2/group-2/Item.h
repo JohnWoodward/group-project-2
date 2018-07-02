@@ -1,22 +1,41 @@
 #pragma once
+#include <string>
+
+using namespace std;
+
 class Item {
 	// Sets default value of attributes
-	string name = "";
-	double price = 0;
+
+
+
 
 public:
+	//constructors 
+	Item();
+	Item operator+(Item rhs);
+	Item operator-(Item rhs);
+
+
+
+
 
 	// Functions setting name and price
 	void setName(string namePassed);
 	void setPrice(double pricePassed);
+	void currentItem();
 
 	// Functions getting name and price
-	void getName();
-	void getPrice();
+	string getName();
+	double getPrice();
 
 private:
+
+
 
 	// Class attributes
 	string name;
 	double price;
+
+
+
 };

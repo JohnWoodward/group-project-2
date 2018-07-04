@@ -7,7 +7,6 @@ Item Item::operator+(Item rhs) {
 	itemTotal.price = price + rhs.price;
 
 	return itemTotal;
-
 }
 
 Item Item::operator-(Item rhs) {

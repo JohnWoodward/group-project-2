@@ -2,8 +2,6 @@
 #include "Cart.h"
 #include <iostream>
 
-
-
 Cart::Cart(int cartSize) {
 	maxItem = cartSize;
 	itemsInCart = 0;
@@ -13,12 +11,7 @@ Cart::Cart(int cartSize) {
 		quantityItem[i] = 0; // Fill with zeroes
 	}
 
-
 	items = new Item[maxItem]();
-
-	//Item* itemPtr = new Item;
-	//Item* itemPtr = new Item{ "333", 3.33 };
-
 	Item* itemPtr;
 	Item item;
 	item.setName("ddd");
@@ -26,30 +19,43 @@ Cart::Cart(int cartSize) {
 	itemPtr = &item;
 	items = new Item[maxItem]();
 	for (int i = 0; i < maxItem; i++) {
-		items[i] = *itemPtr; // Fill with zeroes
+		items[i] = *itemPtr; // Intialize memory
 	}
 }
 
 Cart::~Cart() {
-	// syntax for deleting an array
+	// deletes array when it is no longer needed
 	delete[] items;
 	delete[] quantityItem;
 }
 
 
 // Function to increase price of an item in the cart
-
 void Cart::increasePrice(Item changeItem, double priceIncrease) {
 
 	for (int i = 0; i < itemsInCart; i++) {
-
 		if (items[i].getName() == changeItem.getName()) {
 			items[i].setPrice(priceIncrease + items[i].getPrice());
+			return;
 		}
 	}
+	//throw exception if item not found
 }
 
+Cart::Cart(const Cart & cart) {
+	itemsInCart = cart.itemsInCart;
+	maxItem = cart.maxItem;
 
+	quantityItem = new int[cart.maxItem];
+	for (int i = 0; i < cart.itemsInCart; i++) {
+		quantityItem[i] = cart.quantityItem[i]; 
+	}
+
+	items = new Item[cart.maxItem]();
+	for (int j = 0; j < cart.itemsInCart; j++) {
+		items[j] = cart.items[j];
+	}
+}
 
 
 // Function to decrease price of an item in the cart
@@ -59,8 +65,10 @@ void Cart::decreasePrice(Item changeItem, double amountDecreased) {
 
 		if (items[i].getName() == changeItem.getName()) {
 			items[i].setPrice(items[i].getPrice() - amountDecreased);
+			return;
 		}
 	}
+	//throw exception if item not found
 }
 
 
@@ -98,31 +106,8 @@ void Cart::removeItem(Item itemToRemove) {
 	quantityItem = tempQuantity;
 	tempQuantity = NULL;
 
-	/*
-	Item *tempItemArray = new Item[maxItem];
-	int tempSize = maxItem;
-
-	for (int i = 0; i < itemsInCart; i++) {
-	if (items[i].getName == itemToRemove.getName) {
-
-	if (quantityItem[i] > 0); {
-	quantityItem[i] = 0;
-	}
-
-	for (int k = 0; k < tempSize; k++)
-	{
-	tempItemArray[k] = items[k];
-	}
-
-	items = tempItemArray;
-	}
-
-
-	}
-	*/
+	
 }
-
-// TODO build function that removes an item from cart and shifts elements in cart to the left to fill empty space
 
 
 // Function to add item to cart
@@ -137,56 +122,53 @@ void Cart::addItem(Item newItem, int quantity) {
 	}
 	*/
 
-
-
 	if (itemsInCart > 0) {
 
 		for (int i = 0; i < itemsInCart; i++) {
 			if (items[i].getName() == newItem.getName()) {
 				quantityItem[i] += quantity;
 				cartBool = true;
-
-
 			}
 		}
 
+		// Work around for not doubling cart
+		/* Ugly bool
 		if (cartBool == false && itemsInCart == maxItem) {
 			cout << "unable to add item, cart is to full!" << endl;
 		}
-
 		else if (cartBool == false) {
-
 			quantityItem[itemsInCart] = quantity;
-
 			items[itemsInCart] = newItem;
 			itemsInCart++;
 		}
-
+		*/
+		// Pretty bool
+		if (!cartBool)
+		{
+			if (itemsInCart == maxItem)
+			{
+				cout << "unable to add item, cart is to full!" << endl;
+			}
+			else
+			{
+				quantityItem[itemsInCart] = quantity;
+				items[itemsInCart] = newItem;
+				itemsInCart++;
+			}
+		}
 	}
-
-
-
 	else {
-
 		quantityItem[itemsInCart] = quantity;
-
 		items[itemsInCart] = newItem;
 		itemsInCart++;
 	}
 
-
-
-
-
-	// TODO build function that adds an item and quantity of item to the cart
 }
 
-// Function to print the cart
+// Function to print the cart ** not needed due to overloading << operator
+/*
 void Cart::printCart() {
 
-
-
-	/*
 	double totalPrice = 0;
 	for (int i = 0; i < itemsInCart; i++) {
 		cout << quantityItem[i];
@@ -201,14 +183,12 @@ void Cart::printCart() {
 	}
 	cout << "The total number of items in the cart is: " << itemsInCart << endl;
 	cout << "The total price of the cart is: " << totalPrice << endl << endl;
-	*/
-}
+	}
+*/
 
 
-
-
-// TODO build function that will print out all contents of cart along with their qty and price
-// also it needs to print out total number of items and total cart price
+// Functions to double and half array ** not needed since using an error message when cart is full
+/*
 void Cart::doubleItemsArray() {
 
 
@@ -234,6 +214,7 @@ void Cart::doubleItemsArray() {
 	quantityItem = tempQntArray;
 }
 
+
 void Cart::halfItemsArray() {
 
 
@@ -248,3 +229,4 @@ void Cart::halfItemsArray() {
 	}
 	items = tmp_array;
 }
+*/

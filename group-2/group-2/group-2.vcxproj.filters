@@ -38,7 +38,7 @@
     <ClCompile Include="Cart.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="group-2.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

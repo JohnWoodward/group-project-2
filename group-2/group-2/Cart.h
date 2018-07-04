@@ -1,15 +1,11 @@
-
 #include "Item.h"
 
-
 class Cart {
-
-
 public:
 
 	Cart(int cartSize);
 	~Cart();
-	//Cart(const Cart&);
+	Cart(const Cart & Cart);
 	void increasePrice(Item changeItem, double priceIncrease);
 	void decreasePrice(Item changeItem, double amountDecreased);
 	void removeItem(Item itemToRemove);
@@ -18,17 +14,13 @@ public:
 	int itemsInCart;
 	Item* items;
 	int* quantityItem;
-
+	int maxItem;
 
 private:
 
-	int maxItem;
 	
-	
-	
-	void doubleItemsArray();
-	void halfItemsArray();
 	Item currentItem;
 
-
+	//void doubleItemsArray();
+	//void halfItemsArray();
 };

@@ -4,20 +4,11 @@
 using namespace std;
 
 class Item {
-	// Sets default value of attributes
-
-
-
-
 public:
 	//constructors 
 	Item();
 	Item operator+(Item rhs);
 	Item operator-(Item rhs);
-
-
-
-
 
 	// Functions setting name and price
 	void setName(string namePassed);
@@ -29,13 +20,8 @@ public:
 	double getPrice();
 
 private:
-
-
-
 	// Class attributes
 	string name;
 	double price;
-
-
 
 };

@@ -2,6 +2,8 @@
 #include "Cart.h"
 #include <iostream>
 
+
+
 Cart::Cart(int cartSize) {
 	maxItem = cartSize;
 	itemsInCart = 0;
@@ -10,6 +12,7 @@ Cart::Cart(int cartSize) {
 	for (int i = 0; i < maxItem; i++) {
 		quantityItem[i] = 0; // Fill with zeroes
 	}
+
 
 	items = new Item[maxItem]();
 
@@ -180,6 +183,10 @@ void Cart::addItem(Item newItem, int quantity) {
 
 // Function to print the cart
 void Cart::printCart() {
+
+
+
+	/*
 	double totalPrice = 0;
 	for (int i = 0; i < itemsInCart; i++) {
 		cout << quantityItem[i];
@@ -194,6 +201,7 @@ void Cart::printCart() {
 	}
 	cout << "The total number of items in the cart is: " << itemsInCart << endl;
 	cout << "The total price of the cart is: " << totalPrice << endl << endl;
+	*/
 }
 
 

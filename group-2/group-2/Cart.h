@@ -15,17 +15,17 @@ public:
 	void removeItem(Item itemToRemove);
 	void addItem(Item newItem, int quantity);
 	void printCart();
-
-
-
+	int itemsInCart;
+	Item* items;
+	int* quantityItem;
 
 
 private:
 
 	int maxItem;
-	int itemsInCart;
-	int* quantityItem;
-	Item* items;
+	
+	
+	
 	void doubleItemsArray();
 	void halfItemsArray();
 	Item currentItem;
